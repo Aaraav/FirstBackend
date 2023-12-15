@@ -8,7 +8,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const passport = require('passport');
 const flash=require('connect-flash');
-const MongoDBStore = require('connect-mongodb-session')(session);
+const MongoDBStore = require('connect-mongodb-session');
 const store = new MongoDBStore({
   uri: 'mongodb://localhost:27017/yourdb', // Replace with your MongoDB connection string
   collection: 'expressSessions' // Collection name for sessions
