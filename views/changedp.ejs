@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body {
+    background-image: url("https://wallpapercave.com/dwp2x/wp4539336.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: auto;
+    height: 100%;
+}
+.foram {
+  backdrop-filter: blur(70px);
+
+ 
+  width: 300px;
+  height: 350px;
+  border-radius: 20px;
+  margin-left: 37%;
+  margin-top: 8%;
+}
+
+.box{
+    margin-left: 50px;
+    margin-top: 100px;
+}
+        </style>
+</head>
+<body>
+    <div class="foram">
+        <form  action="/saved" method="POST" enctype="multipart/form-data">
+          <input class="box" style="width: 300px;"  type="file" name="file">
+          <input class="box" style=" margin-top: 30px; width: 200px;text-align: center; height: 20px;" type="text" name="caption" placeholder="some caption">
+          <button style="margin-top: 50px; width: 240px; border-radius: 5px; border: none; text-align: center; margin-left: 30px; height: 30px; background-color:#007bff; color: white;" type="submit">Upload</button>
+        </form>
+      </div>
+</body>
+</html>
