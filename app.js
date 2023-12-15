@@ -12,9 +12,9 @@ require('dotenv').config();
 const port=process.env.PORT || 5000;
 const MongoDBStore = require('connect-mongodb-session')(expressSession);
 
-
+console.log(process.env.MONGO_URL);
 const store = new MongoDBStore({
-  uri: 'mongodb://127.0.0.1:27017/pinterest', // Replace with your MongoDB URI
+  uri: process.env.MONGO_URL, // Replace with your MongoDB URI
   collection: 'sessions',
 });
 
