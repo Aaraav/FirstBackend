@@ -1,9 +1,18 @@
 const mongoose = require('mongoose');
 const plm = require("passport-local-mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/pinterest");
-mongoose.connect(process.env.MONGO_URL);
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/pinterest'; // Check or default the URL
 
+mongoose.connect(MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log('Connected to MongoDB');
+})
+.catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
+});
 const userSchema = new mongoose.Schema({
   username:{ 
     type: String,
