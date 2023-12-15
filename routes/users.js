@@ -3,10 +3,7 @@ const plm = require("passport-local-mongoose");
 
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/pinterest'; // Check or default the URL
 
-mongoose.connect(MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(MONGO_URL)
 .then(() => {
   console.log('Connected to MongoDB');
 })

@@ -9,7 +9,7 @@ const usersRouter = require('./routes/users');
 const passport = require('passport');
 const flash=require('connect-flash');
 require('dotenv').config();
-const port=process.env.PORT || 5000;
+
 const MongoDBStore = require('connect-mongodb-session')(expressSession);
 
 console.log(process.env.MONGO_URL);
@@ -71,6 +71,6 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-app.listen(port);
+
 
 module.exports = app;
