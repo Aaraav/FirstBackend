@@ -3,38 +3,36 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const expressSession = require("express-session");
+const expressSession = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(expressSession); // Pass express-session instance
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const passport = require('passport');
-const flash=require('connect-flash');
-const MongoDBStore = require('connect-mongodb-session');
+const flash = require('connect-flash');
+
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/yourdb', // Replace with your MongoDB connection string
+  uri: 'mongodb://localhost:27017/pinterest', // Replace with your MongoDB connection string
   collection: 'expressSessions' // Collection name for sessions
 });
 
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 app.use(flash());
 app.use(expressSession({
   resave: false,
   saveUninitialized: false,
-  secret: "hello"
+  secret: 'hello',
+  store: store, // Assign the MongoDBStore instance to the 'store' option
 }));
 
 app.use(passport.initialize());
-
-
-
 app.use(passport.session());
 
-// Note: Make sure that your serializeUser and deserializeUser functions are defined correctly in your usersRouter
-passport.serializeUser(usersRouter.serializeUser());
-passport.deserializeUser(usersRouter.deserializeUser());
+// Define your passport.serializeUser() and passport.deserializeUser() methods here
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -42,22 +40,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
