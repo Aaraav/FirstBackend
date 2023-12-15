@@ -12,7 +12,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/pinterest', // Replace with your MongoDB connection string
+  uri: 'mongodb://127.0.0.1:27017/pinterest', // Replace with your MongoDB connection string
   collection: 'expressSessions' // Collection name for sessions
 });
 
