@@ -8,11 +8,9 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const passport = require('passport');
 const flash=require('connect-flash');
-const MongoDBStore = require('connect-mongodb-session')(expressSession);
-const store = new MongoDBStore({
-  uri: 'mongodb://127.0.0.1:27017/pinterest', // Replace with your MongoDB connection string
-  collection: 'expressSessions' // Collection name for sessions
-});
+require('dotenv').config();
+const port=process.env.PORT || 5000;
+
 
 const app = express();
 
@@ -24,7 +22,6 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false,
   secret: "hello",
-  store: store,
   
 }));
 
@@ -63,5 +60,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(port);
 
 module.exports = app;
