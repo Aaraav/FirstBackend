@@ -10,10 +10,13 @@ const passport = require('passport');
 const flash=require('connect-flash');
 require('dotenv').config();
 const port=process.env.PORT || 5000;
+const MongoDBStore = require('connect-mongodb-session')(expressSession);
 
 
-
-
+const store = new MongoDBStore({
+  uri: 'mongodb://127.0.0.1:27017/pinterest', // Replace with your MongoDB URI
+  collection: 'sessions',
+});
 
 
 const app = express();
@@ -26,7 +29,10 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false,
   secret: "hello",
-  
+  store: store,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  }
 }));
 
 app.use(passport.initialize());
