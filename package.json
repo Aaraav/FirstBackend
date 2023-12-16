@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "main": "app.js",
+  "engines": {
+    "node": ">=20.10.0 <21.0.0"
+  },
   
   "scripts": {
     "dev": "npx nodemon ./bin/www",
