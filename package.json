@@ -2,9 +2,10 @@
   "name": "pinterest",
   "version": "0.0.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "dev": "npx nodemon ./bin/www",
-    "start": "node ./bin/www "
+    "start": "node app.js"
   },
   "dependencies": {
     "connect-flash": "^0.1.1",
@@ -16,7 +17,6 @@
     "express": "~4.16.1",
     "express-session": "^1.17.3",
     "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
     "mongoose": "^8.0.3",
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",

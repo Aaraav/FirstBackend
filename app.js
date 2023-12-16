@@ -9,14 +9,19 @@ const usersRouter = require('./routes/users');
 const passport = require('passport');
 const flash=require('connect-flash');
 require('dotenv').config();
+const port=process.env.PORT || 3000;
 
 const MongoDBStore = require('connect-mongodb-session')(expressSession);
 
 console.log(process.env.MONGO_URL);
-const store = new MongoDBStore({
-  uri: process.env.MONGO_URL, // Replace with your MongoDB URI
-  collection: 'sessions',
-});
+
+  const store = new MongoDBStore({
+    uri: "mongodb+srv://aaraav:aaraav@cluster0.kyxqnj3.mongodb.net/pinterest",
+    collection: 'sessions',
+  });
+  // Use the store further in your application
+
+
 
 
 const app = express();
@@ -71,6 +76,8 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
 
 module.exports = app;
