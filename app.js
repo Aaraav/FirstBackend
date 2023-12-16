@@ -9,7 +9,7 @@ const usersRouter = require('./routes/users');
 const passport = require('passport');
 const flash=require('connect-flash');
 require('dotenv').config();
-const port=process.env.PORT || 3000;
+const port=process.env.PORT || 5678;
 
 const MongoDBStore = require('connect-mongodb-session')(expressSession);
 
